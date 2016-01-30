@@ -18,6 +18,7 @@ public class PlayerController : NetworkBehaviour {
     // Use this for initialization
     void Start() {
         if (!isLocalPlayer) {
+            Destroy(transform.Find("MainCamera"));
             Destroy(this);
         }
     }
@@ -43,6 +44,9 @@ public class PlayerController : NetworkBehaviour {
             // jump here
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            //Application.
+        }
 
     }
 
