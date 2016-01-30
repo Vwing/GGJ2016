@@ -54,6 +54,11 @@ public class PlayerController : NetworkBehaviour {
 
     void FixedUpdate() {
 
+        // check to see if player is grounded
+        Vector3 castStart = transform.position + new Vector3(0.0f, 0.5f, 0.0f);
+        RaycastHit info;
+        grounded = Physics.SphereCast(castStart, 0.25f, Vector3.down, out info, 0.5f);
+
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
 
@@ -69,22 +74,17 @@ public class PlayerController : NetworkBehaviour {
         }
 
         float newY = rb.velocity.y;
-        if (timeSinceJump < 0.25f && grounded && hasLanded) {
+        if (timeSinceJump < 0.25f && grounded) {
             newY = jumpSpeed;
             grounded = false;
-            hasLanded = false;
+            //hasLanded = false;
         }
 
         rb.velocity = (input.x * cam.right + input.y * xzforward) * moveSpeed + newY * Vector3.up;
 
-        // check to see if player is grounded
-        Vector3 castStart = transform.position + new Vector3(0.0f, 0.5f, 0.0f);
-        RaycastHit info;
-        grounded = Physics.SphereCast(castStart, 0.45f, Vector3.down, out info, 0.5f);
-
     }
 
-    void OnCollisionEnter(Collision c) {
-        hasLanded = true;
-    }
+    //void OnCollisionEnter(Collision c) {
+    //    hasLanded = true;
+    //}
 }

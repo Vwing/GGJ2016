@@ -9,8 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 480652}
   - 20: {fileID: 2015996}
-  - 92: {fileID: 9202550}
-  - 124: {fileID: 12443332}
   - 81: {fileID: 8154106}
   m_Layer: 0
   m_Name: Main Camera
@@ -247,13 +245,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118704}
   m_Enabled: 1
---- !u!92 &9202550
-Behaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118704}
-  m_Enabled: 1
 --- !u!114 &11436008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -319,13 +310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dee626345c0f2d4e929d858efb26219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!124 &12443332
-Behaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118704}
-  m_Enabled: 1
 --- !u!136 &13638790
 CapsuleCollider:
   m_ObjectHideFlags: 1
