@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : NetworkBehaviour {
 
     private Transform cam;
     private Rigidbody rb;
@@ -13,16 +14,20 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
     }
 
-
+    
     // Use this for initialization
     void Start() {
-
+        if (!isLocalPlayer) {
+            Destroy(this);
+        }
     }
 
     float curVertLook;
     float curHorizLook;
+
     // Update is called once per frame
     void Update() {
+
         float targetHoriz = Input.GetAxisRaw("Mouse X") * mouseSensitivy;
         curVertLook -= Input.GetAxisRaw("Mouse Y") * mouseSensitivy;
         curVertLook = Mathf.Clamp(curVertLook, -90.0f, 90.0f);
@@ -42,6 +47,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void FixedUpdate() {
+
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
 
