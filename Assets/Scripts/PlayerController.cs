@@ -8,13 +8,18 @@ public class PlayerController : NetworkBehaviour {
     private Rigidbody rb;
     private float mouseSensitivy = 10.0f;
     private float mouseLerpSpeed = 10.0f;
+    private float jumpSpeed = 8.0f;
+    private float moveSpeed = 5.0f;
+
+    private bool grounded = false;
+    private bool hasLanded = false;
 
     void Awake() {
         cam = transform.Find("Main Camera");
         rb = GetComponent<Rigidbody>();
     }
 
-    
+
     // Use this for initialization
     void Start() {
         if (!isLocalPlayer) {
@@ -25,6 +30,7 @@ public class PlayerController : NetworkBehaviour {
 
     float curVertLook;
     float curHorizLook;
+    float timeSinceJump = 10f;
 
     // Update is called once per frame
     void Update() {
@@ -39,10 +45,6 @@ public class PlayerController : NetworkBehaviour {
         curHorizLook = Mathf.Lerp(curHorizLook, targetHoriz, mouseLerpSpeed * Time.deltaTime);
 
         transform.Rotate(0.0f, curHorizLook, 0.0f);
-
-        if (Input.GetButtonDown("Jump")) {
-            // jump here
-        }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
             // should figure out how to just disconnect instead
@@ -61,6 +63,29 @@ public class PlayerController : NetworkBehaviour {
             input.Normalize();
         }
         Vector3 xzforward = Vector3.Cross(Vector3.up, -cam.right).normalized;
-        rb.velocity = (input.x * cam.right + input.y * xzforward) * 5.0f;
+
+        timeSinceJump += Time.deltaTime;
+        if (Input.GetButtonDown("Jump")) {
+            timeSinceJump = 0.0f;
+        }
+
+        float newY = rb.velocity.y;
+        if (timeSinceJump < 0.25f && grounded && hasLanded) {
+            newY = jumpSpeed;
+            grounded = false;
+            hasLanded = false;
+        }
+
+        rb.velocity = (input.x * cam.right + input.y * xzforward) * moveSpeed + newY * Vector3.up;
+
+        // check to see if player is grounded
+        Vector3 castStart = transform.position + new Vector3(0.0f, 0.5f, 0.0f);
+        RaycastHit info;
+        grounded = Physics.SphereCast(castStart, 0.45f, Vector3.down, out info, 0.5f);
+
+    }
+
+    void OnCollisionEnter(Collision c) {
+        hasLanded = true;
     }
 }
