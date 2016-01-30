@@ -3,13 +3,14 @@
  * ==============================================================================*/
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class AboutManager : MonoBehaviour
 {
     #region PUBLIC_METHODS
     public void OnStartAR()
     {
-        Application.LoadLevel("Vuforia-2-Loading");
+        SceneManager.LoadScene("Vuforia-2-Loading");
     }
     #endregion // PUBLIC_METHODS
 

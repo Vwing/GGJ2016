@@ -6,6 +6,7 @@ All Rights Reserved.
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Vuforia;
 
 /// <summary>
@@ -115,7 +116,7 @@ public class SampleInitErrorHandler : MonoBehaviour
 
             if (GUI.Button(new Rect(165, 185, 100, 40), "Retry", mErrorOkButton))
             {
-                Application.LoadLevel(0);
+                SceneManager.LoadScene(0);
             }
         }
         else
