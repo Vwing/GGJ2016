@@ -6,24 +6,23 @@ public class PlayerController : NetworkBehaviour {
 
     private Transform cam;
     private Rigidbody rb;
-    private float mouseSensitivy = 10.0f;
-    private float mouseLerpSpeed = 10.0f;
+    private float mouseSensitivy = 8.0f;
+    private float mouseLerpSpeed = 20.0f;
     private float jumpSpeed = 8.0f;
     private float moveSpeed = 5.0f;
 
     private bool grounded = false;
     private bool hasLanded = false;
 
-    void Awake() {
-        cam = transform.Find("Main Camera");
-        rb = GetComponent<Rigidbody>();
-    }
-
-
     // Use this for initialization
     void Start() {
+        cam = transform.Find("Main Camera");
+        rb = GetComponent<Rigidbody>();
+
         if (!isLocalPlayer) {
-            Destroy(cam.gameObject);
+            rb.useGravity = false;
+            Destroy(cam.GetComponent<Camera>());
+            Destroy(cam.GetComponent<AudioListener>());
             Destroy(this);
         }
     }
