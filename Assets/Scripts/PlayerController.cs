@@ -10,7 +10,7 @@ public class PlayerController : NetworkBehaviour {
     private float mouseLerpSpeed = 10.0f;
 
     void Awake() {
-        cam = Camera.main.transform;
+        cam = transform.Find("Main Camera");
         rb = GetComponent<Rigidbody>();
     }
 
@@ -18,7 +18,7 @@ public class PlayerController : NetworkBehaviour {
     // Use this for initialization
     void Start() {
         if (!isLocalPlayer) {
-            Destroy(transform.Find("MainCamera"));
+            Destroy(cam.gameObject);
             Destroy(this);
         }
     }
@@ -45,7 +45,8 @@ public class PlayerController : NetworkBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            //Application.
+            // should figure out how to just disconnect instead
+            Application.Quit();
         }
 
     }
