@@ -37,11 +37,13 @@ public class GodSyncPosition : NetworkBehaviour {
     // tell server your position if you have moved past threshold
     [ClientCallback]
     void transmitPosition() {
-        Vector3 newPos = (userHead.position - followerScene.position) * 100.0f;
-        if (isLocalPlayer && (newPos - lastPos).sqrMagnitude > threshold * threshold) {
-            //CmdProvidePositionToServer(tform.position);
-            CmdProvidePositionToServer(newPos);
-            lastPos = newPos;
+        if (isLocalPlayer) {
+            Vector3 newPos = (userHead.position - followerScene.position) * 100.0f;
+            if ((newPos - lastPos).sqrMagnitude > threshold * threshold) {
+                //CmdProvidePositionToServer(tform.position);
+                CmdProvidePositionToServer(newPos);
+                lastPos = newPos;
+            }
         }
     }
 
