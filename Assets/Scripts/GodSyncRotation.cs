@@ -50,7 +50,7 @@ public class GodSyncRotation : NetworkBehaviour {
     void transmitRotations() {
         if (isLocalPlayer) {
             if (Quaternion.Angle(cam.transform.rotation, lastCamRot) > threshold) {
-                lastCamRot = imageTarget.rotation * cam.rotation;
+                lastCamRot = Quaternion.Inverse(imageTarget.rotation) * cam.rotation;
                 CmdProvideRotationsToServer(lastCamRot);
             }
         }
