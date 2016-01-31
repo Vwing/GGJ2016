@@ -401,6 +401,7 @@ GameObject:
   - 114: {fileID: 11458714}
   - 135: {fileID: 13577274}
   - 114: {fileID: 11477820}
+  - 114: {fileID: 11462380}
   m_Layer: 0
   m_Name: Reticle
   m_TagString: Untagged
@@ -2101,6 +2102,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995d6c3c9620f0745803e9d3cb65a1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11462380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 230
+    i1: 44
+    i2: 161
+    i3: 228
+    i4: 123
+    i5: 57
+    i6: 171
+    i7: 36
+    i8: 152
+    i9: 21
+    i10: 109
+    i11: 103
+    i12: 181
+    i13: 64
+    i14: 121
+    i15: 12
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &11464948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2145,7 +2178,7 @@ MonoBehaviour:
   CameraDirection: 0
   MirrorVideoBackground: 0
   mWorldCenterMode: 2
-  mWorldCenter: {fileID: 0}
+  mWorldCenter: {fileID: 11480738}
   mCentralAnchorPoint: {fileID: 466034}
   mParentAnchorPoint: {fileID: 466034}
   mPrimaryCamera: {fileID: 2029498}
