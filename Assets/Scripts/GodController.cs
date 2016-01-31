@@ -88,7 +88,7 @@ public class GodController : NetworkBehaviour {
         if (go)
         {
             Debug.Log("Destroyed: " + uniqueID);
-            Destroy(go);
+            NetworkServer.Destroy(go);
         }
     }
 }
