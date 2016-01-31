@@ -30,7 +30,7 @@ public class GodSyncRotation : NetworkBehaviour {
 
     void lerpRotations() {
         if (!isLocalPlayer) {
-            tform.localRotation = Quaternion.Lerp(cam.rotation, syncCamRot, lerpRate * Time.deltaTime);
+            tform.localRotation = Quaternion.Lerp(tform.localRotation, syncCamRot, lerpRate * Time.deltaTime);
         }
     }
 
