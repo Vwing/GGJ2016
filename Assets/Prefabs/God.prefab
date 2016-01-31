@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &138226
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601e7df1b67ecda43bba580a5d3fd228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackerImageTarget: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

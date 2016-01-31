@@ -24,6 +24,8 @@ public class GodController : NetworkBehaviour {
             Transform scale = GameObject.Find("FollowerScale").transform;
             fs.localScale = scale.localScale;
             fs.localPosition = scale.position;
+
+            Destroy(transform.Find("Model").gameObject);
         }
     }
 
