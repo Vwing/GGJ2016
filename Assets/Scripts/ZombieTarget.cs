@@ -11,12 +11,15 @@ public class ZombieTarget : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Debug.Log("Started");
         agent = GetComponent<NavMeshAgent>();
         tform = transform;
         target = GameObject.Find("Player(Clone)").transform;
         if (GameObject.Find("GodType")) {
             Destroy(agent);
             transform.parent = GameObject.Find("FollowerScene").transform;
+            transform.localScale = Vector3.one;
+            transform.localRotation = Quaternion.identity;
         }
 	}
 	
