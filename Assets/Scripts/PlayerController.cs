@@ -46,8 +46,7 @@ public class PlayerController : NetworkBehaviour {
         transform.Rotate(0.0f, curHorizLook, 0.0f);
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            // should figure out how to just disconnect instead
-            Application.Quit();
+            NetworkManager.singleton.StopHost();
         }
 
     }

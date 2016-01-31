@@ -2,6 +2,7 @@
  * Copyright (c) 2015 Qualcomm Connected Experiences, Inc. All Rights Reserved. 
  * ==============================================================================*/
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -34,7 +35,7 @@ public class SplashManager : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
 
-        Application.LoadLevel(Application.loadedLevel+1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         // Unload splash images 
         foreach (var tex in mSplashTextures)
