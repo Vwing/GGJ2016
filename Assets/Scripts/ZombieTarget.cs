@@ -15,6 +15,7 @@ public class ZombieTarget : NetworkBehaviour {
         tform = transform;
         target = GameObject.Find("Player(Clone)").transform;
         if (GameObject.Find("GodType")) {
+            Destroy(agent);
             transform.parent = GameObject.Find("FollowerScene").transform;
         }
 	}

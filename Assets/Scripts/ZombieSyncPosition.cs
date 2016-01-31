@@ -48,7 +48,7 @@ public class ZombieSyncPosition : NetworkBehaviour {
 
     // update position if this isnt player
     void lerpPosition() {
-        if (isServer) {
+        if (!isServer) {
             tform.localPosition = Vector3.Lerp(tform.localPosition, syncPos, Time.deltaTime * lerpRate);
         }
     }
