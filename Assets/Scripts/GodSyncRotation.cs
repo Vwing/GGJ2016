@@ -9,6 +9,7 @@ public class GodSyncRotation : NetworkBehaviour {
 
     private Transform tform;
     private Transform cam;
+    private Transform imageTarget;
 
     private Quaternion lastCamRot;
     private float threshold = 1.0f;
@@ -17,9 +18,14 @@ public class GodSyncRotation : NetworkBehaviour {
     // Use this for initialization
     void Start() {
         tform = transform;
+
         GameObject go = GameObject.Find("ARCamera");
         if (go) {
             cam = go.transform;
+        }
+        go = GameObject.Find("ImageTargetStones");
+        if (go) {
+            imageTarget = go.transform;
         }
     }
 
@@ -43,8 +49,8 @@ public class GodSyncRotation : NetworkBehaviour {
     [ClientCallback]
     void transmitRotations() {
         if (isLocalPlayer) {
-            if (Quaternion.Angle(cam.rotation, lastCamRot) > threshold) {
-                lastCamRot = cam.rotation;
+            if (Quaternion.Angle(cam.transform.rotation, lastCamRot) > threshold) {
+                lastCamRot = imageTarget.rotation * cam.rotation;
                 CmdProvideRotationsToServer(lastCamRot);
             }
         }
