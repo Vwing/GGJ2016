@@ -42,7 +42,7 @@ public class GodSyncPosition : NetworkBehaviour {
     void transmitPosition() {
         if (isLocalPlayer) {
             Vector3 dir = centerEye.transform.position - imageTarget.transform.position;
-            Vector3 newPos = imageTarget.transform.TransformDirection(dir) * 100.0f;
+            Vector3 newPos = dir * 100.0f;
 
             if ((newPos - lastPos).sqrMagnitude > threshold * threshold) {
                 //CmdProvidePositionToServer(tform.position);
