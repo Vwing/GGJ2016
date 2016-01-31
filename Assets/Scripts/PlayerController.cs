@@ -24,6 +24,9 @@ public class PlayerController : NetworkBehaviour {
             Destroy(cam.GetComponent<Camera>());
             Destroy(cam.GetComponent<AudioListener>());
             Destroy(this);
+        } else {
+            GameObject go = GameObject.Find("GodScene");
+            go.SetActive(false);
         }
     }
 

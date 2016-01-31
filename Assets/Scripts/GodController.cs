@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using Vuforia;
 
 public class GodController : NetworkBehaviour {
 
@@ -16,6 +17,13 @@ public class GodController : NetworkBehaviour {
             Destroy(cam.GetComponent<Camera>());
             Destroy(cam.GetComponent<AudioListener>());
             Destroy(this);
+        } else {
+            GameObject go = GameObject.Find("ImageTargetStones");
+            Transform fs = GameObject.Find("FollowerScene").transform;
+            fs.parent = go.transform;
+            Transform scale = GameObject.Find("FollowerScale").transform;
+            fs.localScale = scale.localScale;
+            fs.localPosition = scale.position;
         }
     }
 

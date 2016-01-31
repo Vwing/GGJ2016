@@ -25,42 +25,58 @@ public class MenuManager : MonoBehaviour {
             Application.Quit();
         }
 
-        if (Application.platform == RuntimePlatform.Android) {
-            androidUpdate();
-        } else {
-            computerUpdate();
-        }
-    }
-
-    private void androidUpdate() {
-        if (NetworkServer.active) {
-            startCube.SetActive(true);
-            if (isLookingAtStart()) {
-                spinCube();
-                psem.enabled = true;
-                if (Input.GetMouseButtonDown(0)) {
-                    NetworkManager.singleton.StartClient();
-                }
-            } else {
-                psem.enabled = false;
-            }
-        } else {
-            startCube.SetActive(false);
-        }
-    }
-
-    private void computerUpdate() {
         if (isLookingAtStart()) {
             spinCube();
             psem.enabled = true;
             if (Input.GetKeyDown(KeyCode.Space)) {
-                NetworkManager.singleton.StartHost();
+                if (NetworkServer.active) {
+                    NetworkManager.singleton.networkAddress = "169.234.21.140";
+                    NetworkManager.singleton.StartClient();
+                } else {
+                    NetworkManager.singleton.StartHost();
+                }
             }
         } else {
             psem.enabled = false;
         }
 
+        //if (Application.platform == RuntimePlatform.Android) {
+        //    androidUpdate();
+        //} else {
+        //    computerUpdate();
+        //}
     }
+
+    //private void androidUpdate() {
+    //    if (NetworkServer.active) {
+    //        startCube.SetActive(true);
+    //        if (isLookingAtStart()) {
+    //            spinCube();
+    //            psem.enabled = true;
+    //            if (Input.GetMouseButtonDown(0)) {
+    //                NetworkManager.singleton.networkAddress = "169.234.21.140";
+    //                NetworkManager.singleton.StartClient();
+    //            }
+    //        } else {
+    //            psem.enabled = false;
+    //        }
+    //    } else {
+    //        startCube.SetActive(false);
+    //    }
+    //}
+
+    //private void computerUpdate() {
+    //    if (isLookingAtStart()) {
+    //        spinCube();
+    //        psem.enabled = true;
+    //        if (Input.GetKeyDown(KeyCode.Space)) {
+    //            NetworkManager.singleton.StartHost();
+    //        }
+    //    } else {
+    //        psem.enabled = false;
+    //    }
+
+    //}
 
     private bool isLookingAtStart() {
         return Physics.Raycast(cam.position, cam.forward);
