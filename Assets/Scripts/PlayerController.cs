@@ -19,6 +19,13 @@ public class PlayerController : NetworkBehaviour {
         cam = transform.Find("Main Camera");
         rb = GetComponent<Rigidbody>();
 
+        string localPlayerType = "Player";
+        if (!isLocalPlayer) {
+            localPlayerType = "God";
+        }
+        new GameObject(localPlayerType + "Type");
+
+
         if (!isLocalPlayer) {
             rb.useGravity = false;
             Destroy(cam.GetComponent<Camera>());

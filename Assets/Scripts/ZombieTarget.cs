@@ -14,6 +14,9 @@ public class ZombieTarget : NetworkBehaviour {
         agent = GetComponent<NavMeshAgent>();
         tform = transform;
         target = GameObject.Find("Player(Clone)").transform;
+        if (GameObject.Find("GodType")) {
+            transform.parent = GameObject.Find("FollowerScene").transform;
+        }
 	}
 	
     void FixedUpdate() {
