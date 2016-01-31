@@ -7,13 +7,13 @@ public class PlayerSyncRotation : NetworkBehaviour {
     [SyncVar(hook = "OnPlayerRotSynced")]
     private float syncPlayerRot;
     [SyncVar(hook = "OnCamRotSynced")]
-    private float syncCamRot;
+    private Quaternion syncCamRot;
 
     private Transform tform;
     private Transform cam;
 
     private float lastPlayerRot;
-    private float lastCamRot;
+    private Quaternion lastCamRot;
     private float threshold = 1.0f;
     private float lerpRate = 15.0f;
 
@@ -33,13 +33,12 @@ public class PlayerSyncRotation : NetworkBehaviour {
             Vector3 playerNewRot = new Vector3(0.0f, syncPlayerRot, 0.0f);
             tform.localRotation = Quaternion.Lerp(tform.localRotation, Quaternion.Euler(playerNewRot), lerpRate * Time.deltaTime);
 
-            Vector3 camNewRot = new Vector3(syncCamRot, 0.0f, 0.0f);
-            cam.localRotation = Quaternion.Lerp(cam.localRotation, Quaternion.Euler(camNewRot), lerpRate * Time.deltaTime);
+            cam.localRotation = Quaternion.Lerp(cam.localRotation, syncCamRot, lerpRate * Time.deltaTime);
         }
     }
 
     [Command]
-    void CmdProvideRotationsToServer(float playerRot, float camRot) {
+    void CmdProvideRotationsToServer(float playerRot, Quaternion camRot) {
         syncPlayerRot = playerRot;
         syncCamRot = camRot;
         //Debug.Log("synced rotation");
@@ -49,9 +48,9 @@ public class PlayerSyncRotation : NetworkBehaviour {
     void transmitRotations() {
         if (isLocalPlayer) {
             if (checkIfBeyondThreshold(tform.localEulerAngles.y, lastPlayerRot) ||
-                checkIfBeyondThreshold(cam.localEulerAngles.x, lastCamRot)) {
+                Quaternion.Angle(cam.rotation, lastCamRot) > threshold) {
                 lastPlayerRot = tform.localEulerAngles.y;
-                lastCamRot = cam.localEulerAngles.x;
+                lastCamRot = cam.rotation;
                 CmdProvideRotationsToServer(lastPlayerRot, lastCamRot);
             }
         }
@@ -67,7 +66,7 @@ public class PlayerSyncRotation : NetworkBehaviour {
     }
 
     [ClientCallback]
-    void OnCamRotSynced(float latest) {
+    void OnCamRotSynced(Quaternion latest) {
         syncCamRot = latest;
     }
 }
