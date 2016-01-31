@@ -3,14 +3,14 @@ using System.Collections;
 using UnityEngine.Networking;
 
 public class PlayerControllerLocal : MonoBehaviour {
-    public bool networked = true;
+    //public bool networked = true;
 
     private Transform cam;
     private Rigidbody rb;
     private float mouseSensitivy = 8.0f;
     private float mouseLerpSpeed = 20.0f;
     private float jumpSpeed = 8.0f;
-    private float moveSpeed = 5.0f;
+    public float moveSpeed = 5.0f;
 
     private bool grounded = false;
     private bool hasLanded = false;
