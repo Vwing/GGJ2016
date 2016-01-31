@@ -66,8 +66,8 @@ public class GodController : NetworkBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Hit space");
-            if (!Physics.Raycast(cam.position, cam.forward, out hit)){
-                Debug.Log("did not hit");
+            
+            if (!Physics.SphereCast(cam.position, 2.0f, cam.forward, out hit)){
                 return;
             }
             else
