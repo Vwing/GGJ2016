@@ -29,8 +29,8 @@ public class ZombieSpawner : NetworkBehaviour {
     }
 
     void spawnZombie() {
-        Vector2 circ = Random.insideUnitCircle.normalized;
-        Vector3 spawn = new Vector3(circ.x, 0.0f, circ.y) + transform.position;
+        Vector2 circ = Random.insideUnitCircle.normalized * spawnRadius;
+        Vector3 spawn = new Vector3(circ.x, -1.0f, circ.y) + transform.position;
         GameObject go = (GameObject)Instantiate(zombiePrefab, spawn, Quaternion.identity);
         NetworkServer.Spawn(go);
     }
