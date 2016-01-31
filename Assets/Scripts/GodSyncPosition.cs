@@ -13,20 +13,15 @@ public class GodSyncPosition : NetworkBehaviour {
     private Vector3 lastPos;
     private float threshold = 0.25f;
 
-    private GameObject followerScene;
+    private Transform followerScene;
 
     // Use this for initialization
     void Start() {
         tform = transform;
-        followerScene = GameObject.Find("FollowerScene");
+        followerScene = GameObject.Find("FollowerScene").transform;
     }
 
     void FixedUpdate() {
-        transmitPosition();
-        lerpPosition();
-    }
-
-    void OnCollisionEnter() {
         transmitPosition();
         lerpPosition();
     }
@@ -40,11 +35,13 @@ public class GodSyncPosition : NetworkBehaviour {
     // tell server your position if you have moved past threshold
     [ClientCallback]
     void transmitPosition() {
-        Vector3 newPos = followerScene.transform.position * -100.0f;
+        Vector3 newPos = followerScene.position * -100.0f;
         if (isLocalPlayer && (newPos - lastPos).sqrMagnitude > threshold * threshold) {
             //CmdProvidePositionToServer(tform.position);
             CmdProvidePositionToServer(newPos);
             lastPos = newPos;
+        } else {
+            Debug.Log("too small threshold");
         }
     }
 
