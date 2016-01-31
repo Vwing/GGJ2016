@@ -2,7 +2,7 @@
 using System;
 using UnityEngine.Networking;
 
-public class MenuManager : NetworkDiscovery {
+public class MenuManager : MonoBehaviour {
 
     private Transform cam;
 
@@ -21,7 +21,6 @@ public class MenuManager : NetworkDiscovery {
         serverps = serverCube.GetComponent<ParticleSystem>().emission;
         clientps = clientCube.GetComponent<ParticleSystem>().emission;
 
-        Initialize();
     }
 
     // Update is called once per frame
@@ -46,7 +45,8 @@ public class MenuManager : NetworkDiscovery {
             clientps.enabled = true;
 
             if (Input.GetKeyDown(KeyCode.Space)) {
-                StartAsClient();
+                NetworkManager.singleton.networkAddress = "169.234.21.140";
+                NetworkManager.singleton.StartClient();
             }
         } else {
             clientps.enabled = false;
@@ -70,19 +70,19 @@ public class MenuManager : NetworkDiscovery {
 
     }
 
-    public override void OnReceivedBroadcast(string fromAddress, string data) {
-        Debug.Log(fromAddress + " " + data);
-        NetworkManager.singleton.networkAddress = fromAddress;
-        NetworkManager.singleton.StartClient();
+    //public override void OnReceivedBroadcast(string fromAddress, string data) {
+    //    Debug.Log(fromAddress + " " + data);
+    //    NetworkManager.singleton.networkAddress = fromAddress;
+    //    NetworkManager.singleton.StartClient();
 
-        //string[] items = data.Split(':');
-        //Debug.Log(items.ToString());
-        //if (items.Length == 3 && items[0] == "NetworkManager") {
-        //  NetworkManager.singleton.networkAddress = items[1];
-        //NetworkManager.singleton.networkPort = Convert.ToInt32(items[2]);
-        //NetworkManager.singleton.StartClient();
-        //}
-    }
+    //    //string[] items = data.Split(':');
+    //    //Debug.Log(items.ToString());
+    //    //if (items.Length == 3 && items[0] == "NetworkManager") {
+    //    //  NetworkManager.singleton.networkAddress = items[1];
+    //    //NetworkManager.singleton.networkPort = Convert.ToInt32(items[2]);
+    //    //NetworkManager.singleton.StartClient();
+    //    //}
+    //}
 
     private bool isLookingAtObject(string name) {
         RaycastHit hit;
