@@ -41,7 +41,7 @@ public class GodSyncPosition : NetworkBehaviour {
     [ClientCallback]
     void transmitPosition() {
         if (isLocalPlayer) {
-            Vector3 dir = imageTarget.transform.position - centerEye.transform.position;
+            Vector3 dir = centerEye.transform.position - imageTarget.transform.position;
             Vector3 newPos = imageTarget.transform.TransformDirection(dir) * 100.0f;
 
             if ((newPos - lastPos).sqrMagnitude > threshold * threshold) {
