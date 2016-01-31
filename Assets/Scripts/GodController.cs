@@ -67,7 +67,7 @@ public class GodController : NetworkBehaviour {
         {
             Debug.Log("Hit space");
             
-            if (!Physics.SphereCast(cam.position, 2.0f, cam.forward, out hit, 1000.0f)){
+            if (!Physics.Raycast(cam.position, cam.forward, out hit)){
                 return;
             }
             else
