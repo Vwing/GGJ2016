@@ -20,6 +20,8 @@ public class MenuManager : NetworkDiscovery {
 
         serverps = serverCube.GetComponent<ParticleSystem>().emission;
         clientps = clientCube.GetComponent<ParticleSystem>().emission;
+
+        Initialize();
     }
 
     // Update is called once per frame
@@ -33,7 +35,6 @@ public class MenuManager : NetworkDiscovery {
             serverps.enabled = true;
 
             if (Input.GetKeyDown(KeyCode.Space)) {
-                //StartAsServer();
                 NetworkManager.singleton.StartHost();
             }
         } else {
@@ -70,6 +71,7 @@ public class MenuManager : NetworkDiscovery {
     }
 
     public override void OnReceivedBroadcast(string fromAddress, string data) {
+        Debug.Log(fromAddress + " " + data);
         NetworkManager.singleton.networkAddress = fromAddress;
         NetworkManager.singleton.StartClient();
 
