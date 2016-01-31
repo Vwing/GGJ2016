@@ -373,7 +373,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 179352, guid: e62ca1e47b39ab2498156d67b540790c, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11468308, guid: e62ca1e47b39ab2498156d67b540790c, type: 2}
       propertyPath: mWorldCenterMode
@@ -387,7 +387,8 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11462380, guid: e62ca1e47b39ab2498156d67b540790c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e62ca1e47b39ab2498156d67b540790c, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &1010843736 stripped
@@ -396,42 +397,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1010843735}
   m_Script: {fileID: 11500000, guid: cadfb90286c81fd42a6785e4e7cd3024, type: 3}
---- !u!1 &1010843737 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 179352, guid: e62ca1e47b39ab2498156d67b540790c, type: 2}
-  m_PrefabInternal: {fileID: 1010843735}
---- !u!114 &1010843738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1010843737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 230
-    i1: 44
-    i2: 161
-    i3: 228
-    i4: 123
-    i5: 57
-    i6: 171
-    i7: 36
-    i8: 152
-    i9: 21
-    i10: 109
-    i11: 103
-    i12: 181
-    i13: 64
-    i14: 121
-    i15: 12
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!1 &1018533303
 GameObject:
   m_ObjectHideFlags: 0

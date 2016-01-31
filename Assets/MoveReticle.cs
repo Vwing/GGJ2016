@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class MoveReticle : NetworkBehaviour {
+public class MoveReticle : MonoBehaviour {
     Transform cam;
 	// Use this for initialization
 	void Start () {
