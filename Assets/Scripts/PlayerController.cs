@@ -23,6 +23,7 @@ public class PlayerController : NetworkBehaviour {
             rb.useGravity = false;
             Destroy(cam.GetComponent<Camera>());
             Destroy(cam.GetComponent<AudioListener>());
+            transform.parent = GameObject.Find("FollowerScene").transform;
             Destroy(this);
         } else {
             GameObject go = GameObject.Find("GodScene");
@@ -82,7 +83,10 @@ public class PlayerController : NetworkBehaviour {
             //hasLanded = false;
         }
 
-        rb.velocity = (input.x * cam.right + input.y * xzforward) * moveSpeed + newY * Vector3.up;
+        Vector3 xzright = cam.right;
+        xzright.y = 0.0f;
+        xzright.Normalize();
+        rb.velocity = (input.x * xzright + input.y * xzforward) * moveSpeed + newY * Vector3.up;
 
     }
 
