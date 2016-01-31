@@ -15,14 +15,14 @@ public class GodSyncPosition : NetworkBehaviour {
 
     private Transform followerScene;
     private GameObject userHead;
-    private GameObject centerEye;
+    private GameObject imageTarget;
 
     // Use this for initialization
     void Start() {
         tform = transform;
         followerScene = GameObject.Find("FollowerScene").transform;
-        userHead = GameObject.Find("UserHead");
-        centerEye = GameObject.Find("CenterEyeAnchor");
+        userHead = GameObject.Find("ARCamera");
+        imageTarget = GameObject.Find("ImageTargetStones");
     }
 
     void FixedUpdate() {
@@ -40,7 +40,8 @@ public class GodSyncPosition : NetworkBehaviour {
     [ClientCallback]
     void transmitPosition() {
         if (isLocalPlayer) {
-            Vector3 newPos = (userHead.transform.position + centerEye.transform.position - followerScene.position) * 100.0f;
+            
+            Vector3 newPos = imageTarget.transform.TransformDirection(imageTarget.transform.localPosition) * 100.0f;
             //float tmp = newPos.y;
             //newPos.y = newPos.z;
             //newPos.z = tmp;
