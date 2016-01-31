@@ -193,6 +193,33 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1010843735}
   m_Script: {fileID: 11500000, guid: cadfb90286c81fd42a6785e4e7cd3024, type: 3}
+--- !u!1 &1018533303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1018533304}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1018533304
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1018533303}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1054801705}
+  m_RootOrder: 4
 --- !u!1001 &1054801703
 Prefab:
   m_ObjectHideFlags: 0
@@ -230,7 +257,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481170, guid: 473811c7a494bb04a8af8eb8c92475e8, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 156426, guid: 473811c7a494bb04a8af8eb8c92475e8, type: 2}
       propertyPath: m_Name
@@ -240,9 +267,25 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 169786, guid: 473811c7a494bb04a8af8eb8c92475e8, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 141260, guid: 473811c7a494bb04a8af8eb8c92475e8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338832, guid: 473811c7a494bb04a8af8eb8c92475e8, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 473811c7a494bb04a8af8eb8c92475e8, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1054801705 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 404818, guid: 473811c7a494bb04a8af8eb8c92475e8, type: 2}
+  m_PrefabInternal: {fileID: 1054801703}
 --- !u!21 &1129528596
 Material:
   serializedVersion: 6
