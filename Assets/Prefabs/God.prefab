@@ -62,6 +62,7 @@ GameObject:
   - 114: {fileID: 11460044}
   - 114: {fileID: 11465178}
   - 114: {fileID: 11468354}
+  - 114: {fileID: 11423652}
   m_Layer: 0
   m_Name: God
   m_TagString: Untagged
@@ -227,6 +228,17 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127324}
   m_Enabled: 1
+--- !u!114 &11423652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45cf0d4115137374fb45f6e45dd20fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11460044
 MonoBehaviour:
   m_ObjectHideFlags: 1
