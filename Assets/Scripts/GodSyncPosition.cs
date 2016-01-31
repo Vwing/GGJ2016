@@ -14,7 +14,7 @@ public class GodSyncPosition : NetworkBehaviour {
     private float threshold = 0.25f;
 
     private Transform followerScene;
-    private GameObject userHead;
+    private GameObject centerEye;
     private GameObject imageTarget;
     private GameObject player;
 
@@ -22,9 +22,8 @@ public class GodSyncPosition : NetworkBehaviour {
     void Start() {
         tform = transform;
         followerScene = GameObject.Find("FollowerScene").transform;
-        userHead = GameObject.Find("UserHead");
         imageTarget = GameObject.Find("ImageTargetStones");
-        player = GameObject.Find("Player(Clone)");
+        centerEye = GameObject.Find("CenterEyeAnchor");
     }
 
     void FixedUpdate() {
@@ -42,13 +41,9 @@ public class GodSyncPosition : NetworkBehaviour {
     [ClientCallback]
     void transmitPosition() {
         if (isLocalPlayer) {
-            Vector3 dir = imageTarget.transform.localPosition;
-            //Vector3 r = Quaternion.rot
-            Quaternion q = Quaternion.Euler(0.0f, 0.0f, 45.0f);
-            Vector3 newPos = imageTarget.transform.TransformDirection(q * dir) * 100.0f;
-            //float tmp = newPos.y;
-            //newPos.y = newPos.z;
-            //newPos.z = tmp;
+            Vector3 dir = imageTarget.transform.position - centerEye.transform.position;
+            Vector3 newPos = imageTarget.transform.TransformDirection(dir) * 100.0f;
+
             if ((newPos - lastPos).sqrMagnitude > threshold * threshold) {
                 //CmdProvidePositionToServer(tform.position);
                 CmdProvidePositionToServer(newPos);
