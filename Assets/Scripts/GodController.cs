@@ -16,7 +16,7 @@ public class GodController : NetworkBehaviour {
         if (!isLocalPlayer) {
             Destroy(cam.GetComponent<Camera>());
             Destroy(cam.GetComponent<AudioListener>());
-            Destroy(this);
+            //Destroy(this);
         } else {
             cam = Camera.main.transform;
             GameObject go = GameObject.Find("ImageTargetStones");
@@ -36,7 +36,9 @@ public class GodController : NetworkBehaviour {
     // Update is called once per frame
     void Update() {
         //OldMethod();
-
+        if (!isLocalPlayer) {
+            return;
+        }
         Shoot();
     }
     void OldMethod()
@@ -88,7 +90,7 @@ public class GodController : NetworkBehaviour {
         if (go)
         {
             Debug.Log("Destroyed: " + uniqueID);
-            NetworkServer.Destroy(go);
+            Destroy(go);
         }
     }
 }
