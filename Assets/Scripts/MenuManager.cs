@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 using UnityEngine.Networking;
 
-public class MenuManager : MonoBehaviour {
+public class MenuManager : NetworkDiscovery {
 
     private Transform cam;
 
-    private GameObject startCube;
+    private GameObject serverCube;
+    private GameObject clientCube;
     private ParticleSystem ps;
-    private ParticleSystem.EmissionModule psem;
+    private ParticleSystem.EmissionModule serverps;
+    private ParticleSystem.EmissionModule clientps;
 
     // Use this for initialization
     void Awake() {
         cam = Camera.main.transform;
-        startCube = GameObject.Find("Cube");
-        psem = startCube.GetComponent<ParticleSystem>().emission;
-        psem.enabled = false;
+        serverCube = GameObject.Find("ServerCube");
+        clientCube = GameObject.Find("ClientCube");
 
+        serverps = serverCube.GetComponent<ParticleSystem>().emission;
+        clientps = clientCube.GetComponent<ParticleSystem>().emission;
     }
 
     // Update is called once per frame
@@ -25,65 +28,70 @@ public class MenuManager : MonoBehaviour {
             Application.Quit();
         }
 
-        if (isLookingAtStart()) {
-            spinCube();
-            psem.enabled = true;
+        if (isLookingAtObject(serverCube.name)) {
+            spinTransform(serverCube.transform);
+            serverps.enabled = true;
+
             if (Input.GetKeyDown(KeyCode.Space)) {
-                if (NetworkServer.active) {
-                    NetworkManager.singleton.networkAddress = "169.234.21.140";
-                    NetworkManager.singleton.StartClient();
-                } else {
-                    NetworkManager.singleton.StartHost();
-                }
+                //StartAsServer();
+                NetworkManager.singleton.StartHost();
             }
         } else {
-            psem.enabled = false;
+            serverps.enabled = false;
         }
 
-        //if (Application.platform == RuntimePlatform.Android) {
-        //    androidUpdate();
+        if (isLookingAtObject(clientCube.name)) {
+            spinTransform(clientCube.transform);
+            clientps.enabled = true;
+
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartAsClient();
+            }
+        } else {
+            clientps.enabled = false;
+        }
+
+        //if (isLookingAtServer()) {
+
+        //    serverps.enabled = true;
+        //    if (Input.GetKeyDown(KeyCode.Space)) {
+
+        //        if (NetworkServer.active) {
+
+        //        } else {
+        //            NetworkManager.singleton.StartHost();
+        //            //Start
+        //        }
+        //    }
         //} else {
-        //    computerUpdate();
+        //    serverps.enabled = false;
+        //}
+
+    }
+
+    public override void OnReceivedBroadcast(string fromAddress, string data) {
+        NetworkManager.singleton.networkAddress = fromAddress;
+        NetworkManager.singleton.StartClient();
+
+        //string[] items = data.Split(':');
+        //Debug.Log(items.ToString());
+        //if (items.Length == 3 && items[0] == "NetworkManager") {
+        //  NetworkManager.singleton.networkAddress = items[1];
+        //NetworkManager.singleton.networkPort = Convert.ToInt32(items[2]);
+        //NetworkManager.singleton.StartClient();
         //}
     }
 
-    //private void androidUpdate() {
-    //    if (NetworkServer.active) {
-    //        startCube.SetActive(true);
-    //        if (isLookingAtStart()) {
-    //            spinCube();
-    //            psem.enabled = true;
-    //            if (Input.GetMouseButtonDown(0)) {
-    //                NetworkManager.singleton.networkAddress = "169.234.21.140";
-    //                NetworkManager.singleton.StartClient();
-    //            }
-    //        } else {
-    //            psem.enabled = false;
-    //        }
-    //    } else {
-    //        startCube.SetActive(false);
-    //    }
-    //}
-
-    //private void computerUpdate() {
-    //    if (isLookingAtStart()) {
-    //        spinCube();
-    //        psem.enabled = true;
-    //        if (Input.GetKeyDown(KeyCode.Space)) {
-    //            NetworkManager.singleton.StartHost();
-    //        }
-    //    } else {
-    //        psem.enabled = false;
-    //    }
-
-    //}
-
-    private bool isLookingAtStart() {
-        return Physics.Raycast(cam.position, cam.forward);
+    private bool isLookingAtObject(string name) {
+        RaycastHit hit;
+        if (!Physics.Raycast(cam.position, cam.forward, out hit)) {
+            return false;
+        }
+        return hit.collider.name == name;
     }
 
-    private void spinCube() {
+    private void spinTransform(Transform tform) {
         float t = Time.deltaTime;
-        startCube.transform.Rotate(new Vector3(t * 80.0f, t * 100.0f, t * 40.0f));
+        tform.Rotate(new Vector3(t * 80.0f, t * 100.0f, t * 40.0f));
     }
 }
