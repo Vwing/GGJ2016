@@ -11,13 +11,14 @@ public class GodController : NetworkBehaviour {
 
     // Use this for initialization
     void Start() {
-        cam = Camera.main.transform;
+        cam = transform.Find("Main Camera");
 
         if (!isLocalPlayer) {
             Destroy(cam.GetComponent<Camera>());
             Destroy(cam.GetComponent<AudioListener>());
             Destroy(this);
         } else {
+            cam = Camera.main.transform;
             GameObject go = GameObject.Find("ImageTargetStones");
             Transform fs = GameObject.Find("FollowerScene").transform;
             fs.parent = go.transform;

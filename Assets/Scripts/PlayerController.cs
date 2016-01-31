@@ -25,7 +25,6 @@ public class PlayerController : NetworkBehaviour {
         }
         new GameObject(localPlayerType + "Type");
 
-
         if (!isLocalPlayer) {
             rb.useGravity = false;
             Destroy(cam.GetComponent<Camera>());
