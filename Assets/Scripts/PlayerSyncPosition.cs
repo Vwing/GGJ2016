@@ -46,7 +46,7 @@ public class PlayerSyncPosition: NetworkBehaviour {
     // update position if this isnt player
     void lerpPosition() {
         if (!isLocalPlayer) {
-            tform.localPosition = Vector3.Lerp(tform.position, syncPos, Time.deltaTime * lerpRate);
+            tform.localPosition = Vector3.Lerp(tform.localPosition, syncPos, Time.deltaTime * lerpRate);
         }
     }
 }
