@@ -31,7 +31,7 @@ public class PlayerSyncRotation : NetworkBehaviour {
     void lerpRotations() {
         if (!isLocalPlayer) {
             Vector3 playerNewRot = new Vector3(0.0f, syncPlayerRot, 0.0f);
-            tform.rotation = Quaternion.Lerp(tform.rotation, Quaternion.Euler(playerNewRot), lerpRate * Time.deltaTime);
+            tform.localRotation = Quaternion.Lerp(tform.localRotation, Quaternion.Euler(playerNewRot), lerpRate * Time.deltaTime);
 
             Vector3 camNewRot = new Vector3(syncCamRot, 0.0f, 0.0f);
             cam.localRotation = Quaternion.Lerp(cam.localRotation, Quaternion.Euler(camNewRot), lerpRate * Time.deltaTime);
