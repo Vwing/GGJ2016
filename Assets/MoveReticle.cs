@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class MoveReticle : MonoBehaviour {
+public class MoveReticle : NetworkBehaviour {
     Transform cam;
 	// Use this for initialization
 	void Start () {
@@ -15,5 +16,28 @@ public class MoveReticle : MonoBehaviour {
         {
             transform.position = hit.point;
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+            Shoot();
 	}
+
+    void Shoot()
+    {
+        Collider[] zombs = Physics.OverlapSphere(transform.position, 1f);
+        foreach (Collider z in zombs)
+        {
+            Zombie_ID zComp = GetComponent<Zombie_ID>();
+            if (zComp)
+            {
+                CmdZombieShot(zComp.id);
+            }
+        }
+    }
+
+    [Command]
+    void CmdZombieShot(string uniqueID)
+    {
+        GameObject go = GameObject.Find(uniqueID);
+        if (go)
+            Destroy(go);
+    }
 }

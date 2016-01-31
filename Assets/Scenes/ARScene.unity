@@ -90,6 +90,18 @@ NavMeshSettings:
 GameObject:
   m_PrefabParentObject: {fileID: 179352, guid: e62ca1e47b39ab2498156d67b540790c, type: 2}
   m_PrefabInternal: {fileID: 1250826927}
+--- !u!135 &372661319
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 372661318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &372661323
 MonoBehaviour:
   m_ObjectHideFlags: 0
