@@ -11,9 +11,11 @@ public class MenuManager : MonoBehaviour {
     private ParticleSystem ps;
     private ParticleSystem.EmissionModule serverps;
     private ParticleSystem.EmissionModule clientps;
-
+    private string ipAddress;
     // Use this for initialization
-    void Awake() {
+    void Awake()
+    {
+        ipAddress = Application.isEditor ? "192.168.0.103" : "192.168.0.105";
         cam = Camera.main.transform;
         serverCube = GameObject.Find("ServerCube");
         clientCube = GameObject.Find("ClientCube");
@@ -33,7 +35,7 @@ public class MenuManager : MonoBehaviour {
             spinTransform(serverCube.transform);
             serverps.enabled = true;
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
                 NetworkManager.singleton.StartHost();
             }
         } else {
@@ -44,8 +46,10 @@ public class MenuManager : MonoBehaviour {
             spinTransform(clientCube.transform);
             clientps.enabled = true;
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                NetworkManager.singleton.networkAddress = "169.234.21.140";
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            {
+                NetworkManager.singleton.networkAddress = ipAddress;//"192.168.0.103";
+                NetworkManager.singleton.networkPort = 7777;
                 NetworkManager.singleton.StartClient();
             }
         } else {

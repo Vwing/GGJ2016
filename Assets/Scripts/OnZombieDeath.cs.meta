@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 601e7df1b67ecda43bba580a5d3fd228
-timeCreated: 1454843434
+guid: 8d9e60c340f75a34ea4d30c3a7d47cab
+timeCreated: 1454844749
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - explosion: {fileID: 105272, guid: a3c1668f1dd44384da04cd649d4c0f8a, type: 2}
+  - zombieSplatter: {fileID: 177716, guid: a3899ca729234f34899e716d776c9374, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

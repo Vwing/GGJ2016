@@ -8,6 +8,7 @@ public class GodController : NetworkBehaviour {
     private Transform cam;
     private float mouseSensitivy = 8.0f;
     private float mouseLerpSpeed = 20.0f;
+    public GameObject explosion;
 
     // Use this for initialization
     void Start() {
@@ -63,15 +64,18 @@ public class GodController : NetworkBehaviour {
     void Shoot()
     {
         RaycastHit hit;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Hit space");
-            
-            if (!Physics.Raycast(cam.position, cam.forward, out hit)){
+            //Debug.Log("Hit space");
+
+            if (!Physics.Raycast(cam.position, cam.forward, out hit))
+            {
                 return;
             }
             else
-                Debug.Log("hit");
+            {
+                GameObject go = (GameObject)GameObject.Instantiate(explosion, hit.point, hit.transform.rotation);
+            }
             if (hit.collider.tag == "Zombie")
             {
                 Debug.Log("Shooting Zombie");

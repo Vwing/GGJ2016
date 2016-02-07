@@ -70,6 +70,8 @@ public class PlayerController : NetworkBehaviour {
 
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
+        if (Input.GetMouseButton(0))
+            inputY = 1f;
 
         Vector2 input = new Vector2(inputX, inputY);
         if (input.sqrMagnitude > 1.0f) {
