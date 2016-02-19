@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using VincentLib;
 
 public class PlayerController : NetworkBehaviour {
 
@@ -13,6 +14,10 @@ public class PlayerController : NetworkBehaviour {
 
     private bool grounded = false;
     private bool hasLanded = false;
+
+
+    //private LanManager matchmaker;
+    //private string ip = "";
 
     // Use this for initialization
     void Start() {
@@ -34,6 +39,9 @@ public class PlayerController : NetworkBehaviour {
         } else {
             GameObject go = GameObject.Find("GodScene");
             go.SetActive(false);
+            //matchmaker = new LanManager();
+            //matchmaker.ScanHost();
+            //matchmaker.StartServer(7776);
         }
     }
 
@@ -43,6 +51,24 @@ public class PlayerController : NetworkBehaviour {
 
     // Update is called once per frame
     void Update() {
+
+
+
+        //if (!matchmaker._isSearching && ip == "")
+        //{
+        //    Debug.Log("pinging");
+        //    StartCoroutine(matchmaker.SendPing(7776));
+        //}
+        //else if (matchmaker._isSearching)
+        //{
+        //    Debug.Log("checking");
+        //    if (matchmaker._addresses.Count > 0)
+        //    {
+        //        ip = matchmaker._addresses[0];
+        //        Debug.Log(ip);
+        //        matchmaker.CloseServer();
+        //    }
+        //}
 
         float targetHoriz = Input.GetAxisRaw("Mouse X") * mouseSensitivy;
         curVertLook -= Input.GetAxisRaw("Mouse Y") * mouseSensitivy;

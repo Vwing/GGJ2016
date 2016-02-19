@@ -9,6 +9,7 @@ public class GodController : NetworkBehaviour {
     private float mouseSensitivy = 8.0f;
     private float mouseLerpSpeed = 20.0f;
     public GameObject explosion;
+    //VincentLib.LanManager matchmaker;
 
     // Use this for initialization
     void Start() {
@@ -28,6 +29,11 @@ public class GodController : NetworkBehaviour {
             fs.localPosition = scale.position;
 
             Destroy(transform.Find("Model").gameObject);
+
+
+            //matchmaker = new VincentLib.LanManager();
+            //matchmaker.ScanHost();
+            //matchmaker.StartClient(7776);
         }
     }
 
@@ -40,6 +46,7 @@ public class GodController : NetworkBehaviour {
         if (!isLocalPlayer) {
             return;
         }
+
         Shoot();
     }
     void OldMethod()
