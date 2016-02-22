@@ -12,7 +12,8 @@ public class MenuManager : MonoBehaviour
     private ParticleSystem ps;
     private ParticleSystem.EmissionModule serverps;
     private ParticleSystem.EmissionModule clientps;
-    private string ipAddress;
+    private IPKeyPad keyPad;
+    public string ipAddress;
 
     void Awake()
     {
@@ -21,6 +22,7 @@ public class MenuManager : MonoBehaviour
         serverCube = GameObject.Find("ServerCube");
         clientCube = GameObject.Find("ClientCube");
 
+        keyPad = UnityEngine.Object.FindObjectOfType<IPKeyPad>();
         serverps = serverCube.GetComponent<ParticleSystem>().emission;
         clientps = clientCube.GetComponent<ParticleSystem>().emission;
 
@@ -49,7 +51,7 @@ public class MenuManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
-                NetworkManager.singleton.networkAddress = ipAddress;//"192.168.0.103";
+                NetworkManager.singleton.networkAddress = keyPad.theirIP;//"192.168.0.103";
                 NetworkManager.singleton.networkPort = 7777;
                 NetworkManager.singleton.StartClient();
             }
